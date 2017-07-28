@@ -1,0 +1,129 @@
+<<<<<<< HEAD
+<!doctype html>
+<html lang="en" data-framework="react">
+	<head>
+		<meta charset="utf-8">
+		<title>React • TodoMVC</title>
+		<!-- webapp manifest (https://www.w3.org/TR/appmanifest/) -->
+		<link rel="manifest" href="manifest.json">
+		<!-- Fallback application metadata for legacy browsers -->
+		<meta name="application-name" content="TodoMVC">
+		<link rel="icon" sizes="96x96 144x144 192x192" href="img/192x192.png">
+		<link rel="icon" sizes="512x512" href="img/512x512.png">
+		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+	</head>
+	<body>
+		<section class="todoapp"></section>
+		<footer class="info">
+			<p>Double-click to edit a todo</p>
+			<p>Created by <a href="http://github.com/petehunt/">petehunt</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+
+		<script src="node_modules/todomvc-common/base.js"></script>
+		<script src="node_modules/react/dist/react-with-addons.js"></script>
+		<script src="node_modules/classnames/index.js"></script>
+		<script src="node_modules/react/dist/JSXTransformer.js"></script>
+		<script src="node_modules/director/build/director.js"></script>
+
+		<script src="js/utils.js"></script>
+		<script src="js/todoModel.js"></script>
+		<!-- jsx is an optional syntactic sugar that transforms methods in React's
+		`render` into an HTML-looking format. Since the two models above are
+		unrelated to React, we didn't need those transforms. -->
+		<script type="text/jsx" src="js/todoItem.jsx"></script>
+		<script type="text/jsx" src="js/footer.jsx"></script>
+		<script type="text/jsx" src="js/app.jsx"></script>
+		<script>
+		if ('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register('service-worker.js').then(function(reg) {
+		    reg.onupdatefound = function() {
+		      var installingWorker = reg.installing;
+		      installingWorker.onstatechange = function() {
+		        switch (installingWorker.state) {
+		          case 'installed':
+		            if (navigator.serviceWorker.controller) {
+		              console.log('New or updated content is available!');
+		            } else {
+		              console.log('Service worker is installed!');
+		            }
+		            break;
+		          case 'redundant':
+		            console.error('The installing service worker became redundant.');
+		            break;
+		        }
+		      };
+		    };
+		  }).catch(function(e) {
+		    console.error('Error during service worker registration:', e);
+		  });
+		}
+		</script>
+	</body>
+</html>
+=======
+<!doctype html>
+<html lang="en" data-framework="react">
+	<head>
+		<meta charset="utf-8">
+		<title>React • TodoMVC</title>
+		<!-- webapp manifest (https://www.w3.org/TR/appmanifest/) -->
+		<link rel="manifest" href="manifest.json">
+		<!-- Fallback application metadata for legacy browsers -->
+		<meta name="application-name" content="TodoMVC">
+		<link rel="icon" sizes="96x96 144x144 192x192" href="img/192x192.png">
+		<link rel="icon" sizes="512x512" href="img/512x512.png">
+		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+	</head>
+	<body>
+		<section class="todoapp"></section>
+		<footer class="info">
+			<p>Double-click to edit a todo</p>
+			<p>Created by <a href="http://github.com/petehunt/">petehunt</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+
+		<script src="node_modules/todomvc-common/base.js"></script>
+		<script src="node_modules/react/dist/react-with-addons.js"></script>
+		<script src="node_modules/classnames/index.js"></script>
+		<script src="node_modules/react/dist/JSXTransformer.js"></script>
+		<script src="node_modules/director/build/director.js"></script>
+
+		<script src="js/utils.js"></script>
+		<script src="js/todoModel.js"></script>
+		<!-- jsx is an optional syntactic sugar that transforms methods in React's
+		`render` into an HTML-looking format. Since the two models above are
+		unrelated to React, we didn't need those transforms. -->
+		<script type="text/jsx" src="js/todoItem.jsx"></script>
+		<script type="text/jsx" src="js/footer.jsx"></script>
+		<script type="text/jsx" src="js/app.jsx"></script>
+		<script>
+		if ('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register('service-worker.js').then(function(reg) {
+		    reg.onupdatefound = function() {
+		      var installingWorker = reg.installing;
+		      installingWorker.onstatechange = function() {
+		        switch (installingWorker.state) {
+		          case 'installed':
+		            if (navigator.serviceWorker.controller) {
+		              console.log('New or updated content is available!');
+		            } else {
+		              console.log('Service worker is installed!');
+		            }
+		            break;
+		          case 'redundant':
+		            console.error('The installing service worker became redundant.');
+		            break;
+		        }
+		      };
+		    };
+		  }).catch(function(e) {
+		    console.error('Error during service worker registration:', e);
+		  });
+		}
+		</script>
+	</body>
+</html>
+>>>>>>> 5a5efa45d8803ef70cbcef95587258834d921e33
