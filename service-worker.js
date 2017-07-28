@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 var PrecacheConfig = [["img/144x144.png","695451848d57cee6cfce36370bb72d5a"],["img/192x192.png","a94ffdcd452f801513b1bb66d7b9cfe9"],["img/512x512.png","fe6a75b97d55c56d308305687faf4466"],["img/96x96.png","2dc37ab0305b5087aeaefa30797899a2"],["index.html","5fc502823e3b640af63cd8b64796bda9"],["js/app.jsx","f3e5e3547074cd545f3cdf765fe90a81"],["js/footer.jsx","df11a4d6e8a9b3eec8058350fe4e3021"],["js/todoItem.jsx","cf63c2fc751900f28eda7e0ba7a15f22"],["js/todoModel.js","d18ea6b7ea3596548d53a4d2405f0dec"],["js/utils.js","bd0cecebbde2c1d5792cc21a81df3a97"],["node_modules/classnames/index.js","6d0e2693bc02b462fe848492dc6a02be"],["node_modules/director/build/director.js","cf049e7f1662755bf61f64f01ba35bd2"],["node_modules/react/dist/JSXTransformer.js","bcadfc7a0cfb0b531102d26088b0bac2"],["node_modules/react/dist/react-with-addons.js","634ecbf4118f756cded92acd2efec834"],["node_modules/todomvc-app-css/index.css","abb7080e40da2bc059e7762b30555969"],["node_modules/todomvc-common/base.css","fdb11056de60b06dc72e652dd8cb0027"],["node_modules/todomvc-common/base.js","1dbe6e0677bea55c067e7ef6115d40e8"]];
 
 var CacheNamePrefix = 'sw-precache-v1-sw-precache-' + (self.registration ? self.registration.scope : '') + '-';
@@ -30,12 +28,10 @@ var getCacheBustedUrl = function (url, param) {
   };
 
 var isPathWhitelisted = function (whitelist, absoluteUrlString) {
-    // If the whitelist is empty, then consider all URLs to be whitelisted.
+    
     if (whitelist.length === 0) {
       return true;
     }
-
-    // Otherwise compare each path regex to the path of the URL passed in.
     var path = (new URL(absoluteUrlString)).pathname;
     return whitelist.some(function(whitelistedPathRegex) {
       return path.match(whitelistedPathRegex);
@@ -64,22 +60,23 @@ var stripIgnoredUrlParameters = function (originalUrl,
     ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
 
-    url.search = url.search.slice(1)
-      .split('&') 
+    url.search = url.search.slice(1) // Exclude initial '?'
+      .split('&') // Split into an array of 'key=value' strings
       .map(function(kv) {
-        return kv.split('=');
+        return kv.split('='); // Split each 'key=value' string into a [key, value] array
       })
       .filter(function(kv) {
         return ignoreUrlParametersMatching.every(function(ignoredRegex) {
-          return !ignoredRegex.test(kv[0]); 
+          return !ignoredRegex.test(kv[0]); // Return true iff the key doesn't match any of the regexes.
+        });
       })
       .map(function(kv) {
-        return kv.join('='); 
+        return kv.join('='); // Join each [key, value] array into a 'key=value' string
       })
-      .join('&'); 
+      .join('&'); // Join the array of 'key=value' strings into a string with '&' in between each
 
     return url.toString();
-  });
+  };
 
 
 var mappings = populateCurrentCacheNames(PrecacheConfig, CacheNamePrefix, self.location);
@@ -204,15 +201,14 @@ self.addEventListener('fetch', function(event) {
 
     if (cacheName) {
       event.respondWith(
-        // Rely on the fact that each cache we manage should only have one entry, and return that.
+    
         caches.open(cacheName).then(function(cache) {
           return cache.keys().then(function(keys) {
             return cache.match(keys[0]).then(function(response) {
               if (response) {
                 return response;
               }
-              // If for some reason the response was deleted from the cache,
-              // raise and exception and fall back to the fetch() triggered in the catch().
+            
               throw Error('The cache ' + cacheName + ' is empty.');
             });
           });
