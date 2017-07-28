@@ -79,7 +79,7 @@ var stripIgnoredUrlParameters = function (originalUrl,
       .join('&'); 
 
     return url.toString();
-  };
+  });
 
 
 var mappings = populateCurrentCacheNames(PrecacheConfig, CacheNamePrefix, self.location);
