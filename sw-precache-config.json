@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "staticFileGlobs": [
     "img/**.png",
@@ -6,13 +5,4 @@
     "node_modules/**/**.*",
     "index.html"
   ]
-=======
-{
-  "staticFileGlobs": [
-    "img/**.png",
-    "js/**.*",
-    "node_modules/**/**.*",
-    "index.html"
-  ]
->>>>>>> 5a5efa45d8803ef70cbcef95587258834d921e33
 }
